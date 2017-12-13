@@ -32,13 +32,13 @@ namespace OperacionesConMatrices
 						Sumar();
 						break;
 					case 2:
-						//Restar();
+						Restar();
 						break;
 					case 3:
-						//Dividir();
+						Dividir();
 						break;
 					case 4:
-						//Multiplicar();
+						Multiplicar();
 						break;
 					default:
 						Write("No existe esta opción");
@@ -77,11 +77,13 @@ namespace OperacionesConMatrices
 
 		static void ImprimirMatriz(double[,] Matriz)
 		{
+			WriteLine("\nResultado: ");
 			for (int i = 0; i < DimensionI; i++)
 			{
+				Write("\t");
 				for (int j = 0; j < DimensionJ; j++)
 				{
-					Write($"{Matriz[i, j]} ");
+					Write($"{Matriz[i, j]:0.00} ");
 				}
 				WriteLine();
 			}
@@ -99,6 +101,81 @@ namespace OperacionesConMatrices
 						MatrizResultado[i, j] += Matr[i, j];
 					}
 				}
+			}
+			ImprimirMatriz(MatrizResultado);
+		}
+
+		static void Restar()
+		{
+			double[,] MatrizResultado = new double[DimensionI, DimensionJ];
+			int x = 0;
+			foreach (var Matr in Matrices)
+			{
+				for (int i = 0; i < DimensionI; i++)
+				{
+					for (int j = 0; j < DimensionJ; j++)
+					{
+						if (x == 0)
+						{
+							MatrizResultado[i, j] = Matr[i, j];
+						}
+						else
+						{
+							MatrizResultado[i,j] -= Matr[i, j];
+						}
+					}
+				}
+				x++;
+			}
+			ImprimirMatriz(MatrizResultado);
+		}
+
+		static void Multiplicar()
+		{
+			double[,] MatrizResultado = new double[DimensionI, DimensionJ];
+			int x = 0;
+			foreach (var Matr in Matrices)
+			{
+				for (int i = 0; i < DimensionI; i++)
+				{
+					for (int j = 0; j < DimensionJ; j++)
+					{
+						if (x == 0)
+						{
+							MatrizResultado[i, j] = Matr[i, j];
+						}
+						else
+						{
+							MatrizResultado[i, j] *= Matr[i, j];
+						}
+					}
+				}
+				x++;
+			}
+			ImprimirMatriz(MatrizResultado);
+		}
+
+		static void Dividir()
+		{
+			double[,] MatrizResultado = new double[DimensionI, DimensionJ];
+			int x = 0;
+			foreach (var Matr in Matrices)
+			{
+				for (int i = 0; i < DimensionI; i++)
+				{
+					for (int j = 0; j < DimensionJ; j++)
+					{
+						if (x == 0)
+						{
+							MatrizResultado[i, j] = Matr[i, j];
+						}
+						else
+						{
+							MatrizResultado[i, j] /= Matr[i, j];
+						}
+					}
+				}
+				x++;
 			}
 			ImprimirMatriz(MatrizResultado);
 		}
