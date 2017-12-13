@@ -15,30 +15,39 @@ namespace OperacionesConMatrices
 		static int DimensionJ;
 		static void Main(string[] args)
 		{
-
+			bool Continuar = true;
 			Write("Cantidad de matrices a capturar: ");
 			int CantMat = int.Parse(ReadLine());
 			InsertarMatrices(CantMat);
 			Clear();
-			WriteLine("Qué harás con las matrices: ");
-			Write("1.- Sumar\n2.-Restar\n3.-Dividir\n4.-Multiplicar\n...: ");
-			int op = int.Parse(ReadLine());
-			switch (op)
+			while (Continuar)
 			{
-				case 1:
-					Sumar();
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				default:
-					Write("No existe esta opción");
-					break;
+				Clear();
+				WriteLine("Qué harás con las matrices: ");
+				Write("1.- Sumar\n2.- Restar\n3.- Dividir\n4.- Multiplicar\n...: ");
+				int op = int.Parse(ReadLine());
+				switch (op)
+				{
+					case 1:
+						Sumar();
+						break;
+					case 2:
+						//Restar();
+						break;
+					case 3:
+						//Dividir();
+						break;
+					case 4:
+						//Multiplicar();
+						break;
+					default:
+						Write("No existe esta opción");
+						break;
+				}
+				WriteLine("\n\nPresiona cualquier tecla para continuar\nPresiona ESC para salir");
+				if (ReadKey().Key == ConsoleKey.Escape)
+					Continuar = false;
 			}
-			ReadKey();
 		}
 
 		static void InsertarMatrices(int tam)
@@ -72,7 +81,7 @@ namespace OperacionesConMatrices
 			{
 				for (int j = 0; j < DimensionJ; j++)
 				{
-					Write(Matriz[i, j] + " ");
+					Write($"{Matriz[i, j]} ");
 				}
 				WriteLine();
 			}
@@ -80,20 +89,18 @@ namespace OperacionesConMatrices
 
 		static void Sumar()
 		{
-			double[,] Matriz= new double[DimensionI,DimensionJ];
+			double[,] MatrizResultado = new double[DimensionI, DimensionJ];
 			foreach (var Matr in Matrices)
 			{
 				for (int i = 0; i < DimensionI; i++)
 				{
 					for (int j = 0; j < DimensionJ; j++)
 					{
-						Matriz[i, j] += Matr[i, j];
+						MatrizResultado[i, j] += Matr[i, j];
 					}
 				}
 			}
-			ImprimirMatriz(Matriz);
+			ImprimirMatriz(MatrizResultado);
 		}
-
-
 	}
 }
